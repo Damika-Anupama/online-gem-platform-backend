@@ -21,6 +21,10 @@ router.delete("/buyer", BuyerController.delete);
 router.put("/buyer", BuyerController.edit);
 
 // for the DriverController
+router.post("/driver", DriverController.save);
+router.get("/driver", DriverController.getAll);
+router.delete("/driver", DriverController.delete);
+router.put("/driver", DriverController.edit);
 // for the GemBureauAgentController
 
 
