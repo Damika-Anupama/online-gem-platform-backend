@@ -39,11 +39,11 @@ module.exports = {
         try {
             await Buyer.find()
                 .exec()
-                .then((sellers) => {
+                .then((buyers) => {
                     res.json({
                         success: true,
                         message: "success",
-                        sellers: sellers,
+                        buyers: buyers,
                     });
                 });
         } catch (error) {
@@ -78,9 +78,9 @@ module.exports = {
                 {upsert: true} // add document with req.body._id if not exists
             )
                 .exec()
-                .then((seller) => {
+                .then((buyer) => {
                     console.log('Buyer updated successfully!');
-                    console.log(seller);
+                    console.log(buyer);
                 });
         } catch (error) {
             res.json({
@@ -89,17 +89,17 @@ module.exports = {
             });
         }
     },
-    delete: async (req, res) => { // seller id should be passed
+    delete: async (req, res) => { // buyer id should be passed
         try {
             await Buyer.deleteOne({_id: req.body.id})
                 .exec()
-                .then((seller) => {
+                .then((buyer) => {
                     console.log("Buyer deleted!");
-                    console.log(seller);
+                    console.log(buyer);
                 });
         } catch (error) {
             res.json({
-                successs: false,
+                success: false,
                 message: "fail",
             });
         }

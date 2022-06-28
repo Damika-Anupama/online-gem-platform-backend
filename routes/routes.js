@@ -15,6 +15,11 @@ const documentStroge = require("../helpers/documentStorage");
 
 // for the AdminController
 // for the BuyerController
+router.post("/buyer", BuyerController.save);
+router.get("/buyer", BuyerController.getAll);
+router.delete("/buyer", BuyerController.delete);
+router.put("/buyer", BuyerController.edit);
+
 // for the DriverController
 // for the GemBureauAgentController
 
