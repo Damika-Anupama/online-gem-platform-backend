@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const SellerSchema = new mongoose.Schema({
-    _id: {type: String, unique: true},
+    _id: {type: String},
     // ------- credentials-----------
     userName: {type: String, default: null},
     password: {type: String, default: null},
@@ -18,11 +19,13 @@ const SellerSchema = new mongoose.Schema({
     district: {type: String},
     zipCode: {type: String},
     //-------------------------------
-    email: {type: String, unique: true},
+    email: {type: String},
     identityNumber: {type: String},
     telephoneNumber: {type: Number},
 });
 
-const Seller = mongoose.model("Seller", SellerSchema);
+SellerSchema.methods.comparePassword = function (password) {
+    return bcrypt.compareSync(password, this.password);
+};
 
-module.exports = Seller;
+module.exports = mongoose.model("Seller", SellerSchema);

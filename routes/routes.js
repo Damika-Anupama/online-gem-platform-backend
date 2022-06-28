@@ -35,7 +35,7 @@ router.put("/driver", DriverController.edit);
 router.post("/agent", GemBureauAgentController.save);
 router.get("/agent", GemBureauAgentController.getAll);
 router.delete("/agent", GemBureauAgentController.delete);
-router.put("/්agent", GemBureauAgentController.edit);
+router.put("/agent", GemBureauAgentController.edit);
 
 // for the GemController
 router.post("/gems", imageStorage, GemController.saveGem);
@@ -49,7 +49,8 @@ router.post("/add/user", UserController.addUser);
 router.post("/get/user", UserController.getUser);
 
 // for the SellerController
-router.post("/seller", SellerController.saveSeller);
+router.post("/register/seller", SellerController.saveSeller);
+router.post("/signin/seller", SellerController.signIn);
 router.get("/seller", SellerController.getSeller);
 router.delete("/seller", SellerController.deleteSeller);
 router.put("/seller", SellerController.editSeller);

@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
 const Seller = require("../models/Seller");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
     saveSeller: async (req, res) => {
@@ -33,23 +35,23 @@ module.exports = {
                 }
             });
         } catch (err) {
-            console.log(err);
+            console.log("There's an error in seller-registration authentication!", err);
         }
-    },
+    }, // register
     getSeller: async (req, res) => {
         try {
             await Seller.find()
                 .exec()
                 .then((sellers) => {
                     res.json({
-                        successs: true,
-                        message: "sucess",
+                        success: true,
+                        message: "success",
                         sellers: sellers,
                     });
                 });
         } catch (error) {
             res.json({
-                successs: false,
+                success: false,
                 message: "fail",
             });
         }
@@ -104,5 +106,18 @@ module.exports = {
                 message: "fail",
             });
         }
+    },
+    signIn: async (req, res) => {
+        Seller.findOne({
+            email: req.body.email
+        }, function(err, seller) {
+            if (err) throw err;
+            if (!seller || !seller.comparePassword(req.body.password)) {
+                return res.status(401).json({ message: 'Authentication failed. Invalid seller or password.' });
+            }
+            return res.json({ token: jwt.sign({
+                    userName: seller.userName
+                }, 'RESTFULAPIs') });
+        });
     }
 };
