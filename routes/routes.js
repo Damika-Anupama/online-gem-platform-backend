@@ -14,11 +14,16 @@ const imageStroge = require("../helpers/imageStroge");
 const documentStroge = require("../helpers/documentStorage");
 
 // for the AdminController
+router.post("/admin", AdminController.save);
+router.get("/admin", AdminController.getAll);
+router.delete("/admin", AdminController.delete);
+router.put("/admin", AdminController.edit);
+
 // for the BuyerController
+router.put("/buyer", BuyerController.edit);
 router.post("/buyer", BuyerController.save);
 router.get("/buyer", BuyerController.getAll);
 router.delete("/buyer", BuyerController.delete);
-router.put("/buyer", BuyerController.edit);
 
 // for the DriverController
 router.post("/driver", DriverController.save);

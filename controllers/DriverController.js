@@ -104,7 +104,7 @@ module.exports = {
                 success: false,
                 message: "fail",
             });
-            console.log("Error when saving a driver!");
+            console.log("Error when deleting a driver!");
         }
     }
 };
