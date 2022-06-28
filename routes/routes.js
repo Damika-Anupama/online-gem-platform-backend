@@ -10,8 +10,8 @@ const SellerController = require("../controllers/SellerController");
 const UserController = require("../controllers/UserController");
 
 //services
-const imageStroge = require("../helpers/imageStroge");
-const documentStroge = require("../helpers/documentStorage");
+const imageStorage = require("../helpers/imageStroge");
+const documentStorage = require("../helpers/documentStorage");
 
 // for the AdminController
 router.post("/admin", AdminController.save);
@@ -30,12 +30,16 @@ router.post("/driver", DriverController.save);
 router.get("/driver", DriverController.getAll);
 router.delete("/driver", DriverController.delete);
 router.put("/driver", DriverController.edit);
-// for the GemBureauAgentController
 
+// for the GemBureauAgentController
+router.post("/agent", GemBureauAgentController.save);
+router.get("/agent", GemBureauAgentController.getAll);
+router.delete("/agent", GemBureauAgentController.delete);
+router.put("/්agent", GemBureauAgentController.edit);
 
 // for the GemController
-router.post("/gems", imageStroge, GemController.saveGem);
-router.post("/documents", documentStroge, GemController.editGem);
+router.post("/gems", imageStorage, GemController.saveGem);
+router.post("/documents", documentStorage, GemController.editGem);
 router.get("/gems", GemController.getgems);
 router.delete("/gems", GemController.deleteGem);
 // router.put("/gems", GemController.editGem);
