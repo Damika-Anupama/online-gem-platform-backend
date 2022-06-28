@@ -1,0 +1,4 @@
+- Check the delete method in GemController.js
+- userId in bid method in GemController
+- make new modeles named seller name and address and set to the seller.js
+- add relationships and composition enities 
